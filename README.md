@@ -5,8 +5,11 @@ Overview
 
 ## Description
 .zshrc
+
 .tmux.conf
+
 .config/nvim/init.vim
+
 ## Demo
 
 ## Requirement
