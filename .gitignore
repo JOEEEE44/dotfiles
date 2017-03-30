@@ -1,0 +1,20 @@
+## .gitignore ##
+
+# ignoreAll
+# /*
+# /.*
+
+# whiteList
+# !.gitignore
+#
+# !.zshrc
+#
+# !.tmux.conf
+#
+# !/.config/
+# /.config/*
+# !/.config/nvim/
+# /.config/nvim/*
+# !/.config/nvim/init.vim
+
+
