@@ -9,8 +9,16 @@ call dein#begin(expand('/Users/joe/.config/nvim/dein'))
 
 call dein#add('Shougo/dein.vim')
 call dein#add('editorconfig/editorconfig-vim')
+
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 call dein#add('Shougo/deoplete.nvim')
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
@@ -24,6 +32,9 @@ let g:onedark_termcolors=256
 syntax on
 " :so $VIMRUNTIME/syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim
+
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+
 set cursorline
 hi CursorLine ctermbg=232
 set cursorcolumn
@@ -62,20 +73,19 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/neomru.vim')
 
 call dein#add('mattn/emmet-vim')
-autocmd FileType html,css,scss,pug,jade,ejs,erb imap <buffer><expr><tab>
-   \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
-   \ "\<tab>"
+" autocmd FileType html,css,scss,pug,jade,ejs,erb imap <buffer><expr><tab>
+"    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
+"    \ "\<tab>"
 
 call dein#add('Shougo/vimfiler.vim')
 nnoremap :ff :VimFiler
 
 call dein#add('scrooloose/nerdtree')
-call dein#add('jistr/vim-nerdtree-tabs')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 let g:NERDTreeShowBookmarks=1
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 let NERDTreeShowHidden = 1
-nnoremap <silent><C-e> :NERDTreeFocusToggle
+" nnoremap <silent><C-e> :NERDTreeFocusToggle
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable  = '▶'
 let g:NERDTreeDirArrowCollapsible = '▼'
@@ -238,6 +248,13 @@ set smartindent
 set ignorecase
 set noswapfile
 set whichwrap=b,s,h,l,<,>,[,]
+set list
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:･,space:･
+" set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:･,space:･
+
+set hidden
+nnoremap <Tab> :b<Space>
+nnoremap q :bd<Space>
 
 augroup fileTypeIndent
   autocmd!
@@ -248,6 +265,11 @@ augroup END
 nnoremap ff <C-w>
 inoremap ee <Esc>
 vnoremap ee <Esc>
+
+" imap <C-j> <Down>
+" imap <C-k> <Up>
+" imap <C-h> <Left>
+" imap <C-l> <Right>
 
 nnoremap <C-j> }
 nnoremap <C-k> {
@@ -263,6 +285,7 @@ nnoremap - <C-w>5-
 
 set clipboard&
 set clipboard^=unnamedplus
+" nnoremap p p=`]
 
 " esc → us
 if executable('osascript')
@@ -271,6 +294,15 @@ if executable('osascript')
   inoremap   :call system(g:force_alphanumeric_input_command)
   autocmd! FocusGained *
     \ call system(g:force_alphanumeric_input_command)
+endif
+
+" if has('multi_byte_ime') || has('xim')
+"   highlight Cursor guifg=NONE guibg=Green
+"   highlight CursorIM guifg=NONE guibg=Purple
+" endif
+
+if has('xim') || has('multi_byte_ime')
+  highlight CursorIM guifg=Black guibg=Red
 endif
 
 call dein#end()
