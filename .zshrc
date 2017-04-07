@@ -14,8 +14,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Node.js PATH
-# export PATH=$HOME/.nodebrew/current/bin:$PATH
+# Node.js Nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # tmux
 # export TERM=xterm-color256
