@@ -4,7 +4,6 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # NVIM PATH
 export XDG_CONFIG_HOME=~/.config
-
 # rbenv PATH vagrantの.zshrcでコメントアウト解除
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
@@ -171,6 +170,7 @@ alias l='ls -ltr --color=auto'
 alias la='ls -la --color=auto'
 alias ll='ls -l --color=auto'
 alias so='source'
+alias dirs='dirs -v'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
