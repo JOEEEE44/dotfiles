@@ -37,8 +37,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 set cursorline
 hi CursorLine ctermbg=232
-" set cursorcolumn
-" hi CursorColumn ctermbg=232
+set cursorcolumn
+hi CursorColumn ctermbg=232
 set number
 hi CursorLineNr term=bold cterm=NONE ctermfg=green ctermbg=NONE
 
@@ -81,22 +81,22 @@ call dein#add('Shougo/vimfiler.vim')
 nnoremap fi :VimFilerBufferDir<CR>
 nnoremap fe :VimFilerExplorer  -split -simple -winwidth=35 -toggle -no-quit<CR>
 
-" call dein#add('vim-scripts/taglist.vim')
-" call dein#add('szw/vim-tags')
-" set tags=tags
-" " let Tlist_Ctags_Cmd = "/usr/bin/ctags" // Macの場合コメントアウト
-" let g:tlist_javascript_settings = 'js;o:object;f:function'
-" let g:tlist_php_settings        = 'php;c:class;f:function;d:constant'
-" let Tlist_Auto_Open = 1
-" let Tlist_Auto_Update = 1
-" let Tlist_Auto_Highlight_Tag = 1
-" let Tlist_Show_One_File = 1
-" let Tlist_Use_Right_Window = 1
-" let g:Tlist_WinWidth = 35
-" let Tlist_Exit_OnlyWindow = 1
-" let Tlist_Highlight_Tag_On_BufEnter = 1
-" let Tlist_Display_Prototype = 1
-" let Tlist_Compact_Format = 0
+call dein#add('vim-scripts/taglist.vim')
+call dein#add('szw/vim-tags')
+set tags=tags
+" let Tlist_Ctags_Cmd = "/usr/bin/ctags" // Macの場合コメントアウト
+let g:tlist_javascript_settings = 'js;o:object;f:function'
+let g:tlist_php_settings        = 'php;c:class;f:function;d:constant'
+let Tlist_Auto_Open = 1
+let Tlist_Auto_Update = 1
+let Tlist_Auto_Highlight_Tag = 1
+let Tlist_Show_One_File = 1
+let Tlist_Use_Right_Window = 1
+let g:Tlist_WinWidth = 35
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Highlight_Tag_On_BufEnter = 1
+let Tlist_Display_Prototype = 1
+let Tlist_Compact_Format = 0
 
 call dein#add('mbbill/undotree')
 nnoremap :ut :UndotreeToggle
@@ -136,19 +136,6 @@ vmap s <Plug>(easymotion-bd-f2)
 call dein#add('terryma/vim-multiple-cursors')
 nnoremap :mmm :MultipleCursorsFind
 vnoremap :mmm :MultipleCursorsFind
-
-call dein#add('LeafCage/yankround.vim')
-" yankround.vim {{{
-"" キーマップ
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-"" 履歴取得数
-let g:yankround_max_history = 50
-""履歴一覧(kien/ctrlp.vim)
-nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
-" }}}
 
 " call dein#add('ctrlpvim/ctrlp.vim')
 set rtp+=~/.fzf
@@ -213,8 +200,8 @@ call dein#add('tomtom/tcomment_vim')
 call dein#add('nathanaelkane/vim-indent-guides')
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236 ctermfg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238 ctermfg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238
 
 call dein#add('vim-scripts/AnsiEsc.vim')
 " :Ansiesc
@@ -236,7 +223,8 @@ set ignorecase
 set noswapfile
 set whichwrap=b,s,h,l,<,>,[,]
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:･,space:･
+" set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:･,space:･
 
 set hidden
 nnoremap <Tab> :b<Space>
@@ -268,8 +256,6 @@ augroup END
 nnoremap ff <C-w>
 inoremap ee <Esc>
 vnoremap ee <Esc>
-
-nnoremap // :noh<Enter>
 
 " imap <C-j> <Down>
 " imap <C-k> <Up>
