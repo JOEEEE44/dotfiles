@@ -37,8 +37,8 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 set cursorline
 hi CursorLine ctermbg=232
-set cursorcolumn
-hi CursorColumn ctermbg=232
+" set cursorcolumn
+" hi CursorColumn ctermbg=232
 set number
 hi CursorLineNr term=bold cterm=NONE ctermfg=green ctermbg=NONE
 
@@ -200,10 +200,10 @@ call dein#add('tomtom/tcomment_vim')
 call dein#add('nathanaelkane/vim-indent-guides')
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236 ctermfg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238 ctermfg=238
 
-call dein#add('vim-scripts/AnsiEsc.vim')
+" call dein#add('vim-scripts/AnsiEsc.vim')
 " :Ansiesc
 
 " call dein#add('bronson/vim-trailing-whitespace')
@@ -223,8 +223,7 @@ set ignorecase
 set noswapfile
 set whichwrap=b,s,h,l,<,>,[,]
 set list
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:･,space:･
-" set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:･,space:･
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
 
 set hidden
 nnoremap <Tab> :b<Space>
@@ -248,7 +247,7 @@ endfunction
 " endfunction
 
 augroup fileTypeIndent
-  autocmd!
+autocmd!
   autocmd BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
@@ -276,25 +275,6 @@ nnoremap - <C-w>5-
 
 set clipboard&
 set clipboard^=unnamedplus
-" nnoremap p p=`]
-
-" esc → us
-if executable('osascript')
-  let s:keycode_jis_eisuu = 102
-  let g:force_alphanumeric_input_command = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "' &"
-  inoremap   :call system(g:force_alphanumeric_input_command)
-  autocmd! FocusGained *
-    \ call system(g:force_alphanumeric_input_command)
-endif
-
-" if has('multi_byte_ime') || has('xim')
-"   highlight Cursor guifg=NONE guibg=Green
-"   highlight CursorIM guifg=NONE guibg=Purple
-" endif
-
-" if has('xim') || has('multi_byte_ime')
-"   highlight CursorIM guifg=Black guibg=Red
-" endif
 
 " Slack
 " let g:slaq_token = "token"
