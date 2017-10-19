@@ -40,7 +40,7 @@ hi CursorLine ctermbg=232
 " set cursorcolumn
 " hi CursorColumn ctermbg=232
 set number
-hi CursorLineNr term=bold cterm=NONE ctermfg=196 ctermbg=NONE
+hi CursorLineNr term=bold cterm=NONE ctermfg=green ctermbg=NONE
 
 call dein#add('othree/html5.vim')
 call dein#add('hail2u/vim-css3-syntax')
@@ -78,35 +78,8 @@ call dein#add('mattn/emmet-vim')
 "    \ "\<tab>"
 
 call dein#add('Shougo/vimfiler.vim')
-nnoremap :ff :VimFiler
-
-call dein#add('scrooloose/nerdtree')
-call dein#add('Xuyuanp/nerdtree-git-plugin')
-let g:NERDTreeShowBookmarks=1
-" autocmd vimenter * NERDTree
-let NERDTreeShowHidden = 1
-" nnoremap <silent><C-e> :NERDTreeFocusToggle
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable  = '▶'
-let g:NERDTreeDirArrowCollapsible = '▼'
-nnoremap :ss :NERDTreeToggle
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    '#151515')
-call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    '#151515')
-call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
-call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
+nnoremap fi :VimFilerBufferDir<CR>
+nnoremap fe :VimFilerExplorer  -split -simple -winwidth=35 -toggle -no-quit<CR>
 
 " call dein#add('vim-scripts/taglist.vim')
 " call dein#add('szw/vim-tags')
@@ -246,7 +219,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238 cter
 call dein#add('vim-scripts/AnsiEsc.vim')
 " :Ansiesc
 
-call dein#add('bronson/vim-trailing-whitespace')
+" call dein#add('bronson/vim-trailing-whitespace')
+" vimfiler background red comment out...
 
 " call dein#add('yuratomo/gmail.vim')
 
@@ -266,7 +240,7 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
 
 set hidden
 nnoremap <Tab> :b<Space>
-" nnoremap q :bd<Space> //マクロとかぶる？
+nnoremap <Tab>q :bd<Space>
 function! s:newfile(title)
   execute ":f ~/dotfiles/".strftime('%Y-%m-%d-%H-%M-%S').a:title.".txt"
 endfunction
@@ -337,8 +311,22 @@ endif
 " endif
 
 " Slack
-let g:slaq_token = "xoxp-2673020087-4929319662-253895974452-e1284dbd970d10656100394d9c05b856"
-call dein#add('agatan/vim-vlack')
+" let g:slaq_token = "token"
+" call dein#add('agatan/vim-vlack')
+
+" TwitVim
+call dein#add('twitvim/twitvim')
+let twitvim_enable_python = 1
+"Plugin commands
+" :PosttoTwitter - This command will prompt you for a message to send to Twitter.
+" :CPosttoTwitter - This command posts the current line in the current buffer to Twitter.
+" :BPosttoTwitter - This command posts the current buffer to Twitter.
+" :FriendsTwitter - View friends timeline.
+" :UserTwitter - View your timeline.
+" :MentionsTwitter - View @-mentions.
+" :PublicTwitter - View public timeline.
+" :DMTwitter - View direct messages.
+" :SearchTwitter - Use Twitter Search.
 
 call dein#end()
 if dein#check_install()

@@ -23,6 +23,11 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # export LANG="ja_JP.UTF-8"
 export LANG="en_US.UTF-8"
 
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+# Alacritty
+source ~/.cargo/env
+
 # zplug
 source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
@@ -53,7 +58,7 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^e' peco-select-history
 
-# peco find | Ctrl + g
+# peco find | Ctrl + t
 export EDITOR=vi # MyEditor
 function peco-path() {
   local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
