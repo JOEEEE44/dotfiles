@@ -248,13 +248,20 @@ endfunction
 
 augroup fileTypeIndent
 autocmd!
-  autocmd BufNewFile,BufRead *.py setlocal tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.php setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.py  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.rb  setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+" call dein#add('comeonly/php.vim-html-enhanced')
 
 nnoremap ff <C-w>
 inoremap ee <Esc>
 vnoremap ee <Esc>
+
+au   BufEnter *   execute ":lcd " . expand("%:p:h")
+
+nnoremap // :noh<CR>
 
 " imap <C-j> <Down>
 " imap <C-k> <Up>
@@ -293,6 +300,8 @@ let twitvim_enable_python = 1
 " :PublicTwitter - View public timeline.
 " :DMTwitter - View direct messages.
 " :SearchTwitter - Use Twitter Search.
+
+:source /Users/joe/.config/nvim/mycommand.vim
 
 call dein#end()
 if dein#check_install()

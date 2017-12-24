@@ -5,9 +5,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # NVIM PATH
 export XDG_CONFIG_HOME=~/.config
 
-# rbenv PATH vagrantの.zshrcでコメントアウト解除
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
+# rbenv PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # PYENV PATH
 export PYENV_ROOT="$HOME/.pyenv"
