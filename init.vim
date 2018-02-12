@@ -223,7 +223,8 @@ set ignorecase
 set noswapfile
 set whichwrap=b,s,h,l,<,>,[,]
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
+" set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 set hidden
 nnoremap <Tab> :b<Space>
