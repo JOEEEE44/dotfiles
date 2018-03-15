@@ -79,7 +79,7 @@ call dein#add('mattn/emmet-vim')
 
 call dein#add('Shougo/vimfiler.vim')
 nnoremap fi :VimFilerBufferDir<CR>
-nnoremap fe :VimFilerExplorer  -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap fe :VimFilerExplorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 
 call dein#add('vim-scripts/taglist.vim')
 call dein#add('szw/vim-tags')
