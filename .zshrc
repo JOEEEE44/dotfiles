@@ -17,6 +17,9 @@ eval "$(pyenv init -)"
 # Node.js Nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# yarn PATH
+export PATH="$HOME/.yarn/bin:$PATH"
+
 # tmux
 # export TERM=xterm-color256
 
