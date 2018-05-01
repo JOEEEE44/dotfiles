@@ -19,6 +19,9 @@ call dein#add('Shougo/neosnippet-snippets')
 " smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
+" python3
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+
 call dein#add('Shougo/deoplete.nvim')
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
