@@ -2,6 +2,18 @@ plugins=(git)
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# Hyper | hyper-tab-icons-plus
+# precmd() {
+#    pwd=$(pwd)
+#    cwd=${pwd##*/}
+#    print -Pn "\e]0;$cwd\a"
+# }
+#
+# preexec() {
+#    if overridden; then return; fi
+#    printf "\033]0;%s\a" "${1%% *} | $cwd"
+# }
+
 # NVIM PATH
 export XDG_CONFIG_HOME=~/.config
 
@@ -106,23 +118,23 @@ zle -N pet-select
 bindkey '^s' pet-select
 
 # powerlevel9k
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-POWERLEVEL9K_RAM_BACKGROUND="black"
-POWERLEVEL9K_RAM_FOREGROUND="249"
-POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%K{white}%F{black} `date +%T` %f%k%F{white}%f "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rvm background_jobs ram battery)
+# source  ~/powerlevel9k/powerlevel9k.zsh-theme
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+# POWERLEVEL9K_MODE='awesome-patched'
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_VCS_GIT_ICON=''
+# POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
+# POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+# POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+# POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+# POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+# POWERLEVEL9K_RAM_BACKGROUND="black"
+# POWERLEVEL9K_RAM_FOREGROUND="249"
+# POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
+# POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%K{white}%F{black} `date +%T` %f%k%F{white}%f "
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rvm background_jobs ram battery)
 
 # プロンプト
 PROMPT="%{${fg[green]}%}%n@%m %{${fg[yellow]}%}%~ %{${fg[red]}%}%# %{${reset_color}%}"
