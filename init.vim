@@ -263,8 +263,7 @@ augroup END
 " call dein#add('comeonly/php.vim-html-enhanced')
 
 nnoremap ff <C-w>
-inoremap ee <Esc>
-vnoremap ee <Esc>
+inoremap jj <Esc>
 
 au   BufEnter *   execute ":lcd " . expand("%:p:h")
 
