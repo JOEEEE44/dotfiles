@@ -58,11 +58,11 @@ call dein#add('jelera/vim-javascript-syntax')
 call dein#add('w0rp/ale')
 call dein#add('posva/vim-vue')
 let g:ale_linters = {
-      \ 'html': [],
+      \ 'html': [''],
       \ 'css': ['stylelint'],
       \ 'javascript': ['eslint'],
       \ 'vue': ['eslint'],
-      \ 'eruby': []
+      \ 'eruby': ['rubocop']
       \ }
 let g:ale_linter_aliases = {'vue': 'css'}
 let g:ale_open_list = 0
@@ -153,6 +153,7 @@ call dein#add('vim-scripts/grep.vim')
 call dein#add('Shougo/context_filetype.vim')
 call dein#add('osyo-manga/vim-precious')
 autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
 
 call dein#add('mattn/excitetranslate-vim')
 call dein#add('mattn/webapi-vim')

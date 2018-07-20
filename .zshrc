@@ -2,6 +2,48 @@ plugins=(git)
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# powerline
+export LC_ALL="en_US.UTF-8" # tmux powerline
+# export PATH="$HOME/.anyenv/envs/pyenv/shims:$PATH"
+# powerline-daemon -q
+# . /Users/joe/.anyenv/envs/pyenv/versions/3.6.5/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# powerlevel9k # pure or powerline 使うならコメントアウト
+# source  ~/powerlevel9k/powerlevel9k.zsh-theme
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+# POWERLEVEL9K_MODE='awesome-patched'
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_VCS_GIT_ICON=''
+# POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
+# POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
+# POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
+# POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
+# POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
+# POWERLEVEL9K_RAM_BACKGROUND="black"
+# POWERLEVEL9K_RAM_FOREGROUND="249"
+# POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
+# POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%K{white}%F{black} `date +%T` %f%k%F{white}%f "
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rvm background_jobs ram)
+
+# プロンプト # pure or powerline 使うならコメントアウト
+# PROMPT="%{${fg[green]}%}%n@%m %{${fg[yellow]}%}%~ %{${fg[red]}%}%# %{${reset_color}%}"
+# PROMPT2="%{${fg[yellow]}%} %_ > %{${reset_color}%}"
+# SPROMPT="%{${fg[red]}%}correct: %R -> %r ? [n,y,a,e] %{${reset_color}%}"
+
+# Git setting # pure or powerline 使うならコメントアウト
+# RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
+# autoload -Uz vcs_info
+# setopt prompt_subst
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+# zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+# zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+# zstyle ':vcs_info:*' actionformats '[%b|%a]'
+# precmd () { vcs_info }
+# RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
 # Hyper | hyper-tab-icons-plus
 # precmd() {
 #    pwd=$(pwd)
@@ -17,16 +59,16 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # NVIM PATH
 export XDG_CONFIG_HOME=~/.config
 
-# rbenv PATH
+# rbenv PATH # anyenv使うからコメントアウト
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 
-# PYENV PATH
+# PYENV PATH # anyenv使うからコメントアウト
 # export PYENV_ROOT="$HOME/.pyenv"
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # eval "$(pyenv init -)"
 
-# Node.js Nodebrew
+# Node.js Nodebrew # anyenv使うからコメントアウト
 # export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # anyenv
@@ -59,13 +101,15 @@ source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'mafredri/zsh-async', from:github
+zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
 if ! zplug check --verbose; then
-  printf 'Install? [y/N]: '
+  printf "Install? [y/N]: "
   if read -q; then
     echo; zplug install
   fi
 fi
-zplug load --verbose
+zplug load
 
 # peco history | Ctrl + e
 function peco-select-history() {
@@ -116,30 +160,6 @@ function pet-select() {
 }
 zle -N pet-select
 bindkey '^s' pet-select
-
-# powerlevel9k
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_VCS_GIT_ICON=''
-POWERLEVEL9K_VCS_STAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-POWERLEVEL9K_RAM_BACKGROUND="black"
-POWERLEVEL9K_RAM_FOREGROUND="249"
-POWERLEVEL9K_RAM_ELEMENTS=(ram_free)
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\n"
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%K{white}%F{black} `date +%T` %f%k%F{white}%f "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm rvm background_jobs ram battery)
-
-# プロンプト
-PROMPT="%{${fg[green]}%}%n@%m %{${fg[yellow]}%}%~ %{${fg[red]}%}%# %{${reset_color}%}"
-PROMPT2="%{${fg[yellow]}%} %_ > %{${reset_color}%}"
-SPROMPT="%{${fg[red]}%}correct: %R -> %r ? [n,y,a,e] %{${reset_color}%}"
 
 # ls
 export LSCOLORS=gxfxcxdxbxegedabagacag
@@ -273,16 +293,4 @@ function mkcd() {
     mkdir -p $1 && cd $1
   fi
 }
-
-# Git setting
-RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
