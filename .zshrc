@@ -2,6 +2,9 @@ plugins=(git)
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# firebase
+export PATH="$HOME/.anyenv/envs/ndenv/versions/v10.0.0/bin:$PATH"
+
 # powerline
 export LC_ALL="en_US.UTF-8" # tmux powerline
 # export PATH="$HOME/.anyenv/envs/pyenv/shims:$PATH"
@@ -83,6 +86,7 @@ fi
 
 # yarn PATH
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # tmux
 # export TERM=xterm-color256
