@@ -2,6 +2,12 @@ plugins=(git)
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# editor
+export EDITOR=vi
+
+# direnv
+eval "$(direnv hook zsh)"
+
 # firebase
 export PATH="$HOME/.anyenv/envs/ndenv/versions/v10.0.0/bin:$PATH"
 
@@ -133,7 +139,6 @@ zle -N peco-select-history
 bindkey '^e' peco-select-history
 
 # peco find | Ctrl + t
-export EDITOR=vi # MyEditor
 function peco-path() {
   local filepath="$(find . | grep -v '/\.' | peco --prompt 'PATH>')"
   [ -z "$filepath" ] && return
