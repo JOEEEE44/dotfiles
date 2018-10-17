@@ -15,6 +15,9 @@ Overview
 ## Requirement
 
 ## Usage
+ln -s ~/dotfiles/.zshrc ~/
+ln -s ~/dotfiles/.tmux.conf ~/
+ln -s ~/dotfiles/init.vim ~/.config/nvim/
 
 ## Install
 

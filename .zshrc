@@ -5,6 +5,12 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # editor
 export EDITOR=vi
 
+# NVIM PATH
+export XDG_CONFIG_HOME=~/.config
+
+# mysql
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
 # direnv
 eval "$(direnv hook zsh)"
 
@@ -13,8 +19,7 @@ export PATH="$HOME/.anyenv/envs/ndenv/versions/v10.0.0/bin:$PATH"
 
 # powerline
 export LC_ALL="en_US.UTF-8" # tmux powerline
-# export PATH="$HOME/.anyenv/envs/pyenv/shims:$PATH"
-# powerline-daemon -q
+export PATH=~/.local/bin/:$PATH # tmux powerline
 # . /Users/joe/.anyenv/envs/pyenv/versions/3.6.5/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # powerlevel9k # pure or powerline 使うならコメントアウト
@@ -65,21 +70,6 @@ export LC_ALL="en_US.UTF-8" # tmux powerline
 #    printf "\033]0;%s\a" "${1%% *} | $cwd"
 # }
 
-# NVIM PATH
-export XDG_CONFIG_HOME=~/.config
-
-# rbenv PATH # anyenv使うからコメントアウト
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
-
-# PYENV PATH # anyenv使うからコメントアウト
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-
-# Node.js Nodebrew # anyenv使うからコメントアウト
-# export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # anyenv
 if [ -d ${HOME}/.anyenv ] ; then
   export PATH="$HOME/.anyenv/bin:$PATH"
@@ -102,9 +92,9 @@ export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export LANG="en_US.UTF-8"
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"
 # Alacritty
-source ~/.cargo/env
+# source ~/.cargo/env
 
 # zplug
 source ~/.zplug/init.zsh
