@@ -5,6 +5,9 @@ endif
 set runtimepath^=/Users/joe/.config/nvim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('/Users/joe/.config/nvim/dein'))
 
+call dein#add('vim-jp/vimdoc-ja')
+set helplang=ja
+
 " call dein#add('SpaceVim/SpaceVim')
 
 call dein#add('Shougo/dein.vim')
@@ -57,14 +60,20 @@ call dein#add('jelera/vim-javascript-syntax')
 " ESLint StyleLint
 call dein#add('w0rp/ale')
 call dein#add('posva/vim-vue')
+autocmd FileType vue syntax sync fromstart
 let g:ale_linters = {
       \ 'html': [''],
       \ 'css': ['stylelint'],
       \ 'javascript': ['eslint'],
-      \ 'vue': ['eslint'],
-      \ 'eruby': ['rubocop']
+      \ 'vue': ['vls', 'eslint'],
+      \ 'ruby': ['rubocop'],
+      \ 'eruby': ['erubi'],
+      \ 'erb': ['erb'],
       \ }
-let g:ale_linter_aliases = {'vue': 'css'}
+let b:ale_linter_aliases = {
+      \ 'vue': 'css',
+      \ 'eruby': 'html',
+      \ }
 let g:ale_open_list = 0
 let g:ale_statusline_format = ['E%d', 'W%d', '']
 let g:ale_echo_msg_error_str = 'E'

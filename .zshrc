@@ -18,7 +18,7 @@ eval "$(direnv hook zsh)"
 export PATH="$HOME/.anyenv/envs/ndenv/versions/v10.0.0/bin:$PATH"
 
 # powerline
-export LC_ALL="en_US.UTF-8" # tmux powerline
+export LC_ALL="en_US.UTF-8" # tmux powerline commandline
 export PATH=~/.local/bin/:$PATH # tmux powerline
 # . /Users/joe/.anyenv/envs/pyenv/versions/3.6.5/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
@@ -111,7 +111,7 @@ if ! zplug check --verbose; then
 fi
 zplug load
 
-# peco history | Ctrl + e
+# peco history | Ctrl + r
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -126,7 +126,7 @@ function peco-select-history() {
     zle clear-screen
 }
 zle -N peco-select-history
-bindkey '^e' peco-select-history
+bindkey '^r' peco-select-history
 
 # peco find | Ctrl + t
 function peco-path() {
