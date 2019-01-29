@@ -8,6 +8,8 @@ call dein#begin(expand('/Users/joe/.config/nvim/dein'))
 call dein#add('vim-jp/vimdoc-ja')
 set helplang=ja
 
+call dein#add('joeeee44/vvemt')
+
 " call dein#add('SpaceVim/SpaceVim')
 
 call dein#add('Shougo/dein.vim')
@@ -32,12 +34,22 @@ let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" typescript
+" call dein#add('mhartington/nvim-typescript')
+" call dein#add('leafgarland/typescript-vim')
+
 call dein#add('joshdick/onedark.vim')
 colorscheme onedark
 let g:onedark_termcolors=256
 syntax on
 " :so $VIMRUNTIME/syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim
+
+" Alacrittyでopacity設定してもvimは透過されない為追記 colorscheme xxx より後に書くこと
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+" highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 
@@ -92,28 +104,30 @@ call dein#add('mattn/emmet-vim')
 "    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
 "    \ "\<tab>"
 
+call dein#add('ryanoasis/vim-devicons')
+
 call dein#add('Shougo/vimfiler.vim')
 nnoremap fi :VimFilerBufferDir<CR>
 nnoremap fe :VimFilerExplorer -split -simple -winwidth=35 -toggle -no-quit<CR>
 
 call dein#add('Shougo/defx.nvim')
 
-call dein#add('vim-scripts/taglist.vim')
-call dein#add('szw/vim-tags')
-set tags=tags
-" let Tlist_Ctags_Cmd = "/usr/bin/ctags" // Macの場合コメントアウト
-let g:tlist_javascript_settings = 'js;o:object;f:function'
-let g:tlist_php_settings        = 'php;c:class;f:function;d:constant'
-let Tlist_Auto_Open = 1
-let Tlist_Auto_Update = 1
-let Tlist_Auto_Highlight_Tag = 1
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let g:Tlist_WinWidth = 35
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Highlight_Tag_On_BufEnter = 1
-let Tlist_Display_Prototype = 1
-let Tlist_Compact_Format = 0
+" call dein#add('vim-scripts/taglist.vim')
+" call dein#add('szw/vim-tags')
+" set tags=tags
+" " let Tlist_Ctags_Cmd = "/usr/bin/ctags" // Macの場合コメントアウト
+" let g:tlist_javascript_settings = 'js;o:object;f:function'
+" let g:tlist_php_settings        = 'php;c:class;f:function;d:constant'
+" let Tlist_Auto_Open = 1
+" let Tlist_Auto_Update = 1
+" let Tlist_Auto_Highlight_Tag = 1
+" let Tlist_Show_One_File = 1
+" let Tlist_Use_Right_Window = 1
+" let g:Tlist_WinWidth = 35
+" let Tlist_Exit_OnlyWindow = 1
+" let Tlist_Highlight_Tag_On_BufEnter = 1
+" let Tlist_Display_Prototype = 1
+" let Tlist_Compact_Format = 0
 
 call dein#add('mbbill/undotree')
 nnoremap :ut :UndotreeToggle
@@ -164,6 +178,9 @@ call dein#add('vim-scripts/grep.vim')
 call dein#add('Shougo/context_filetype.vim')
 call dein#add('osyo-manga/vim-precious')
 autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+" autocmd BufNewFile,BufRead *.vue set filetype=vue.html.javascript.scss
+" autocmd BufNewFile,BufRead *.ts set filetype=typescript
+autocmd BufNewFile,BufRead *.{html,htm} set filetype=html
 autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
 
 call dein#add('mattn/excitetranslate-vim')
@@ -244,6 +261,8 @@ set list
 " set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
+set scrolloff=20
+
 set hidden
 nnoremap <Tab> :b<Space>
 nnoremap <Tab>q :bd<Space>
@@ -281,11 +300,6 @@ au   BufEnter *   execute ":lcd " . expand("%:p:h")
 
 nnoremap // :noh<CR>
 
-" imap <C-j> <Down>
-" imap <C-k> <Up>
-" imap <C-h> <Left>
-" imap <C-l> <Right>
-
 nnoremap <C-j> }
 nnoremap <C-k> {
 
@@ -318,8 +332,6 @@ let twitvim_enable_python = 1
 " :PublicTwitter - View public timeline.
 " :DMTwitter - View direct messages.
 " :SearchTwitter - Use Twitter Search.
-
-:source /Users/joe/.config/nvim/mycommand.vim
 
 call dein#end()
 if dein#check_install()

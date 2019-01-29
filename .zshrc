@@ -17,6 +17,10 @@ eval "$(direnv hook zsh)"
 # firebase
 export PATH="$HOME/.anyenv/envs/ndenv/versions/v10.0.0/bin:$PATH"
 
+# LANG
+# export LANG="ja_JP.UTF-8"
+# export LANG="en_US.UTF-8"
+
 # powerline
 export LC_ALL="en_US.UTF-8" # tmux powerline commandline
 export PATH=~/.local/bin/:$PATH # tmux powerline
@@ -87,14 +91,8 @@ export PATH="$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # tmux
 # export TERM=xterm-color256
 
-# LANG
-# export LANG="ja_JP.UTF-8"
-export LANG="en_US.UTF-8"
-
-# Rust
-# export PATH="$HOME/.cargo/bin:$PATH"
-# Alacritty
-# source ~/.cargo/env
+# Rust # Alacritty
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # zplug
 source ~/.zplug/init.zsh
@@ -293,3 +291,8 @@ function mkcd() {
   fi
 }
 
+# Google Cloud SDK
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/joe/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joe/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/joe/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joe/google-cloud-sdk/completion.zsh.inc'; fi
