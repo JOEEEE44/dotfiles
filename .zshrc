@@ -7,6 +7,8 @@ export EDITOR=vi
 
 # NVIM PATH
 export XDG_CONFIG_HOME=~/.config
+# NVIM clangd PATH
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # mysql
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"

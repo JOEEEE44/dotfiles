@@ -17,11 +17,11 @@ call dein#add('editorconfig/editorconfig-vim')
 
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " python3
@@ -33,10 +33,6 @@ let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#keyword_patterns = {}
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" typescript
-" call dein#add('mhartington/nvim-typescript')
-" call dein#add('leafgarland/typescript-vim')
 
 call dein#add('joshdick/onedark.vim')
 colorscheme onedark
@@ -69,10 +65,141 @@ call dein#add('lilydjwg/colorizer')
 " call dein#add('unite-webcolorname') #error
 call dein#add('jelera/vim-javascript-syntax')
 
+
+
+
+" call dein#add('autozimu/LanguageClient-neovim', {
+"   \ 'rev': 'next',
+"   \ 'build': './install.sh',
+"   \ })
+" filetype plugin indent on
+" syntax enable
+"
+" " for LanguageClient-neovim
+" set hidden
+" let g:LanguageClient_serverCommands = {
+"     \ 'vue': ['vls'],
+"     \ }
+" " not stop completion $ & /
+" setlocal iskeyword+=$
+" setlocal iskeyword+=-
+
+
+
+
+" call dein#add('Shougo/deoplete-lsp')
+
+" call lsp#server#add('python', 'pyls')
+" call lsp#server#add('rust', ['rustup', 'run', 'stable', 'rls'])
+
+" " For go-langserver
+" call lsp#server#add('go', [expand('$GOPATH/bin/go-langserver'),
+"       \ '-format-tool', 'gofmt', '-lint-tool', 'golint', '-gocodecompletion'])
+"
+" " For bingo
+" " https://github.com/saibing/bingo
+" call lsp#server#add('go', [
+"       \ 'bingo', '--mode', 'stdio', '--logfile', '/tmp/lspserver.log',
+"       \ '--trace', '--pprof', ':6060'])
+
+
+
+
+
+" これが一番おしい？でもautozimu/LanguageClient-neovimでやりたいきがする
+" Language Server Protocol
+call dein#add('prabirshrestha/async.vim')
+call dein#add('prabirshrestha/vim-lsp')
+call dein#add('prabirshrestha/asyncomplete.vim')
+call dein#add('prabirshrestha/asyncomplete-lsp.vim')
+" python-language-server
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+" typescript-language-server
+call dein#add('ryanolsonx/vim-lsp-typescript')
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+      \ 'whitelist': ['typescript', 'typescript.tsx', 'javascript', 'vue'],
+      \ })
+endif
+
+
+
+" " call dein#add('autozimu/LanguageClient-neovim', {
+" "   \ 'rev': 'next',
+" "   \ 'build': './install.sh',
+" "   \ })
+"
+" " LanguageClient plugin
+" " call dein#add('autozimu/LanguageClient-neovim', {
+" "   \ 'do': ':UpdateRemotePlugins'
+" "   \ })
+" call dein#add('autozimu/LanguageClient-neovim')
+"
+" " Automatically start language servers.
+" let g:LanguageClient_autoStart = 1
+"
+" " Minimal LSP configuration for JavaScript
+" let g:LanguageClient_serverCommands = {}
+" if executable('javascript-typescript-stdio')
+"   let g:LanguageClient_serverCommands.javascript = ['javascript-typescript-stdio']
+"   " Use LanguageServer for omnifunc completion
+"   autocmd FileType javascript setlocal omnifunc=LanguageClient#complete
+" else
+"   echo "javascript-typescript-stdio not installed!\n"
+"   :cq
+" endif
+
+
+
+
+
+" " call dein#add('autozimu/LanguageClient-neovim')
+" call dein#add('autozimu/LanguageClient-neovim', {
+"   \ 'rev': 'next',
+"   \ 'build': './install.sh',
+"   \ })
+" set hidden
+" let g:LanguageClient_serverCommands = {
+"   \ 'cpp': ['clangd'],
+"   \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+"   \ 'javascript': ['/opt/javascript-typescript-langserver/lib/language-server-stdio.js'],
+"   \ }
+" let g:LanguageClient_loadSettings = 1
+" let g:LanguageClient_autoStart = 1
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> F :call LanguageClient#textDocument_formatting()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+"
+" call dein#add('Shougo/context_filetype.vim')
+
+
+
+
+
+" let g:LanguageClient_serverCommands = {
+"     \ 'vue': ['vls'],
+"     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+"     \ }
+"
+" call dein#add('rust-lang/rust.vim')
+" let g:rustfmt_autosave = 1
+"
+"
+"
+"
+
 " ESLint StyleLint
 call dein#add('w0rp/ale')
-call dein#add('posva/vim-vue')
-autocmd FileType vue syntax sync fromstart
 let g:ale_linters = {
       \ 'html': [''],
       \ 'css': ['stylelint'],
@@ -176,12 +303,15 @@ call dein#add('vim-scripts/grep.vim')
 " :Rgrep
 
 call dein#add('Shougo/context_filetype.vim')
-call dein#add('osyo-manga/vim-precious')
-autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
-" autocmd BufNewFile,BufRead *.vue set filetype=vue.html.javascript.scss
-" autocmd BufNewFile,BufRead *.ts set filetype=typescript
+call dein#add('leafgarland/typescript-vim')
+call dein#add('posva/vim-vue')
+autocmd FileType vue syntax sync fromstart
 autocmd BufNewFile,BufRead *.{html,htm} set filetype=html
 autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
+" 問題なければ消す3つ↓
+" call dein#add('osyo-manga/vim-precious')
+" autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+" autocmd BufNewFile,BufRead *.vue set filetype=vue.html.javascript.scss
 
 call dein#add('mattn/excitetranslate-vim')
 call dein#add('mattn/webapi-vim')
@@ -231,6 +361,10 @@ set splitright
 " \r
 
 call dein#add('tomtom/tcomment_vim')
+" call dein#add('scrooloose/nerdcommenter')
+" filetype on
+" let g:NERDSpaceDelims=1
+" let g:NERDDefaultAlign='left'
 
 call dein#add('nathanaelkane/vim-indent-guides')
 let g:indent_guides_enable_on_vim_startup = 1
@@ -337,4 +471,3 @@ call dein#end()
 if dein#check_install()
   call dein#install()
 endif
-
