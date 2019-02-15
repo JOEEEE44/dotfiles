@@ -2,18 +2,82 @@ if &compatible
   set nocompatible               " Be iMproved
 endif
 
-set runtimepath+=/Users/joe/.cache/dein/repos/github.com/Shougo/dein.vim
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-if dein#load_state('/Users/joe/.cache/dein')
-call dein#begin('/Users/joe/.cache/dein')
-call dein#add('/Users/joe/.cache/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#add(s:dein_repo_dir)
 
-" language-server
+
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
+  call dein#add('vim-jp/vimdoc-ja')
+  call dein#add('joeeee44/vvemt')
+  " call dein#add('SpaceVim/SpaceVim')
+  call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('joshdick/onedark.vim')
+  call dein#add('othree/html5.vim')
+  call dein#add('hail2u/vim-css3-syntax')
+  call dein#add('lilydjwg/colorizer')
+  call dein#add('jelera/vim-javascript-syntax')
+  call dein#add('w0rp/ale')
+  call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('mattn/emmet-vim')
+  call dein#add('ryanoasis/vim-devicons')
+  call dein#add('Shougo/vimfiler.vim')
+  call dein#add('Shougo/defx.nvim')
+  call dein#add('mbbill/undotree')
+  call dein#add('easymotion/vim-easymotion')
+  call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('vim-scripts/grep.vim')
+  call dein#add('Shougo/context_filetype.vim')
+  call dein#add('leafgarland/typescript-vim')
+  call dein#add('posva/vim-vue')
+  call dein#add('mattn/excitetranslate-vim')
+  call dein#add('mattn/webapi-vim')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('airblade/vim-gitgutter')
+  " call dein#add('edkolev/tmuxline.vim')
+  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('tomtom/tcomment_vim')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('twitvim/twitvim')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
+
+filetype plugin indent on
+" syntax enable
+
+" mattn/emmet-vim
+" autocmd FileType html,css,scss,pug,jade,ejs,erb imap <buffer><expr><tab>
+"    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
+"    \ "\<tab>"
+
+" autozimu/LanguageClient-neovim
 " $ yarn global add vue-language-server
-call dein#add('autozimu/LanguageClient-neovim', {
-  \ 'rev': 'next',
-  \ 'build': 'bash install.sh',
-  \ })
 set hidden
 let g:LanguageClient_serverCommands = {
   \ 'vue': ['vls'],
@@ -29,17 +93,14 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 setlocal iskeyword+=$
 setlocal iskeyword+=-
 
-filetype plugin indent on
-syntax enable
+" lilydjwg/colorizer'
+" :ColorHighlight	- start/update highlighting
+" :ColorClear      - clear all highlights
+" :ColorToggle     - toggle highlights
+" call dein#add('unite-webcolorname') #error
 
-call dein#add('vim-jp/vimdoc-ja')
+" vim-jp/vimdoc-ja
 set helplang=ja
-
-call dein#add('joeeee44/vvemt')
-
-" call dein#add('SpaceVim/SpaceVim')
-
-call dein#add('editorconfig/editorconfig-vim')
 
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -52,8 +113,7 @@ let g:neosnippet#expand_word_boundary = 1
 " python3
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
-" deoplete.vim
-call dein#add('Shougo/deoplete.nvim')
+" Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>
@@ -74,7 +134,7 @@ function! s:my_cr_function() abort
   return deoplete#cancel_popup() . "\<CR>"
 endfunction
 
-call dein#add('joshdick/onedark.vim')
+" joshdick/onedark.vim
 colorscheme onedark
 let g:onedark_termcolors=256
 " syntax on
@@ -87,26 +147,7 @@ highlight NonText ctermbg=NONE guibg=NONE
 highlight SpecialKey ctermbg=NONE guibg=NONE
 " highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
-
-set cursorline
-hi CursorLine ctermbg=232
-" set cursorcolumn
-" hi CursorColumn ctermbg=232
-set number
-hi CursorLineNr term=bold cterm=NONE ctermfg=green ctermbg=NONE
-
-call dein#add('othree/html5.vim')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('lilydjwg/colorizer')
-" :ColorHighlight	- start/update highlighting
-" :ColorClear      - clear all highlights
-" :ColorToggle     - toggle highlights
-" call dein#add('unite-webcolorname') #error
-call dein#add('jelera/vim-javascript-syntax')
-
-" ESLint StyleLint
-call dein#add('w0rp/ale')
+" w0rp/ale
 let g:ale_linters = {
   \ 'html': [''],
   \ 'css': ['stylelint'],
@@ -129,22 +170,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " let g:ale_sign_warning    ='⚠'
 " :ALELint
 
-call dein#add('Shougo/denite.nvim')
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neomru.vim')
-
-call dein#add('mattn/emmet-vim')
-" autocmd FileType html,css,scss,pug,jade,ejs,erb imap <buffer><expr><tab>
-"    \ emmet#isExpandable() ? "\<plug>(emmet-expand-abbr)" :
-"    \ "\<tab>"
-
-call dein#add('ryanoasis/vim-devicons')
-
-call dein#add('Shougo/vimfiler.vim')
+" Shougo/vimfiler.vim
 nnoremap fi :VimFilerBufferDir<CR>
 nnoremap fe :VimFilerExplorer -split -simple -winwidth=35 -toggle -no-quit<CR>
-
-call dein#add('Shougo/defx.nvim')
 
 " call dein#add('vim-scripts/taglist.vim')
 " call dein#add('szw/vim-tags')
@@ -163,7 +191,8 @@ call dein#add('Shougo/defx.nvim')
 " let Tlist_Display_Prototype = 1
 " let Tlist_Compact_Format = 0
 
-call dein#add('mbbill/undotree')
+
+" mbbill/undotree
 nnoremap :ut :UndotreeToggle
 if has("persistent_undo")
   set undodir=~/.undodir/
@@ -179,26 +208,20 @@ let g:undotree_TreeNodeShape = '*'
 let g:undotree_HighlightChangedText = 1
 let g:undotree_HighlightSyntax = "UnderLined"
 
-call dein#add('easymotion/vim-easymotion')
+" easymotion
 nmap s <Plug>(easymotion-overwin-f2)
 vmap s <Plug>(easymotion-bd-f2)
 
-" call dein#add('haya14busa/incsearch.vim')
-" call dein#add('haya14busa/incsearch-easymotion.vim')
-" function! s:incsearch_config(...) abort
-"   return incsearch#util#deepextend(deepcopy({
-"   \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-"   \   'keymap': {
-"   \     "\<CR>": '<Over>(easymotion)'
-"   \   },
-"   \   'is_expr': 0
-"   \ }), get(a:, 1, {}))
-" endfunction
-" noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-" noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-" noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+" posva/vim-vue
+autocmd FileType vue syntax sync fromstart
+autocmd BufNewFile,BufRead *.{html,htm} set filetype=html
+autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
 
-call dein#add('terryma/vim-multiple-cursors')
+" mattn/webapi-vim
+nnoremap :et :ExciteTranslate
+vnoremap :et :ExciteTranslate
+
+" terryma/vim-multiple-cursors
 nnoremap :mmm :MultipleCursorsFind
 vnoremap :mmm :MultipleCursorsFind
 
@@ -206,33 +229,13 @@ vnoremap :mmm :MultipleCursorsFind
 set rtp+=~/.fzf
 nnoremap <C-t> :call fzf#run({'sink': 'edit'})
 
-call dein#add('vim-scripts/grep.vim')
-" :Rgrep
-
-call dein#add('Shougo/context_filetype.vim')
-call dein#add('leafgarland/typescript-vim')
-call dein#add('posva/vim-vue')
-autocmd FileType vue syntax sync fromstart
-autocmd BufNewFile,BufRead *.{html,htm} set filetype=html
-autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
-" 問題なければ消す3つ↓
-" call dein#add('osyo-manga/vim-precious')
-" autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
-" autocmd BufNewFile,BufRead *.vue set filetype=vue.html.javascript.scss
-
-call dein#add('mattn/excitetranslate-vim')
-call dein#add('mattn/webapi-vim')
-nnoremap :et :ExciteTranslate
-vnoremap :et :ExciteTranslate
-
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
+" vim-airline
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'dark'
 
-call dein#add('tpope/vim-fugitive')
+" tpope/vim-fugitive'
 let g:airline#extensions#branch#enabled = 1
 " git add % => :Gwrite
 " git status => :Gstatus "[-]add [D]Gblame
@@ -244,13 +247,7 @@ let g:airline#extensions#branch#enabled = 1
 " :Glog
 " :Git log
 
-call dein#add('airblade/vim-gitgutter')
-
-" call dein#add('edkolev/tmuxline.vim')
-
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-call dein#add('thinca/vim-quickrun')
+" thinca/vim-quickrun'
 " let g:quickrun_config={'_': {'split': 'vertical'}}
 " set splitbelow
 set splitright
@@ -267,22 +264,40 @@ set splitright
 " :setfiletype ruby
 " \r
 
-call dein#add('tomtom/tcomment_vim')
-
-call dein#add('nathanaelkane/vim-indent-guides')
+" nathanaelkane/vim-indent-guides
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236 ctermfg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238 ctermfg=238
 
-" call dein#add('vim-scripts/AnsiEsc.vim')
-" :Ansiesc
+au   BufEnter *   execute ":lcd " . expand("%:p:h")
 
-" call dein#add('bronson/vim-trailing-whitespace')
-" vimfiler background red comment out...
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 
-" call dein#add('yuratomo/gmail.vim')
+nnoremap ff <C-w>
+inoremap jj <Esc>
+nnoremap // :noh<CR>
+nnoremap <C-j> }
+nnoremap <C-k> {
+inoremap {<Enter> {<Enter>}<Esc><S-o>
+inoremap [<Enter> [<Enter>]<Esc><S-o>
+inoremap (<Enter> (<Enter>)<Esc><S-o>
+nnoremap > <C-w>5>
+nnoremap < <C-w>5<
+nnoremap + <C-w>5+
+nnoremap - <C-w>5-
+nnoremap <Tab> :b<Space>
+nnoremap <Tab>q :bd<Space>
 
+set cursorline
+hi CursorLine ctermbg=232
+" set cursorcolumn
+" hi CursorColumn ctermbg=232
+set number
+hi CursorLineNr term=bold cterm=NONE ctermfg=green ctermbg=NONE
+
+set clipboard&
+set clipboard^=unnamedplus
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -295,14 +310,9 @@ set ignorecase
 set noswapfile
 set whichwrap=b,s,h,l,<,>,[,]
 set list
-" set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:･
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
-
 set scrolloff=20
-
 set hidden
-nnoremap <Tab> :b<Space>
-nnoremap <Tab>q :bd<Space>
 function! s:newfile(title)
   execute ":f ~/dotfiles/".strftime('%Y-%m-%d-%H-%M-%S').a:title.".txt"
 endfunction
@@ -328,36 +338,10 @@ autocmd!
   autocmd BufNewFile,BufRead *.rb  setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
-" call dein#add('comeonly/php.vim-html-enhanced')
-
-nnoremap ff <C-w>
-inoremap jj <Esc>
-
-au   BufEnter *   execute ":lcd " . expand("%:p:h")
-
-nnoremap // :noh<CR>
-
-nnoremap <C-j> }
-nnoremap <C-k> {
-
-inoremap {<Enter> {<Enter>}<Esc><S-o>
-inoremap [<Enter> [<Enter>]<Esc><S-o>
-inoremap (<Enter> (<Enter>)<Esc><S-o>
-
-nnoremap > <C-w>5>
-nnoremap < <C-w>5<
-nnoremap + <C-w>5+
-nnoremap - <C-w>5-
-
-set clipboard&
-set clipboard^=unnamedplus
-
 " Slack
 " let g:slaq_token = "token"
-" call dein#add('agatan/vim-vlack')
 
 " TwitVim
-call dein#add('twitvim/twitvim')
 let twitvim_enable_python = 1
 "Plugin commands
 " :PosttoTwitter - This command will prompt you for a message to send to Twitter.
@@ -370,11 +354,3 @@ let twitvim_enable_python = 1
 " :DMTwitter - View direct messages.
 " :SearchTwitter - Use Twitter Search.
 
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif

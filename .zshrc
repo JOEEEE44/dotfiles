@@ -6,7 +6,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export EDITOR=vi
 
 # NVIM PATH
-# export XDG_CONFIG_HOME=~/.config
+export XDG_CONFIG_HOME=$HOME/.config
 # NVIM clangd PATH
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
