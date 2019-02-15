@@ -69,7 +69,7 @@ if dein#check_install()
 endif
 
 filetype plugin indent on
-" syntax enable
+syntax enable
 
 " mattn/emmet-vim
 " autocmd FileType html,css,scss,pug,jade,ejs,erb imap <buffer><expr><tab>
@@ -85,6 +85,7 @@ let g:LanguageClient_serverCommands = {
   \ 'css': [],
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
+  \ 'ruby': ['solargraph', 'stdio'],
   \ }
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
