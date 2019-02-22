@@ -1,30 +1,24 @@
 if &compatible
   set nocompatible               " Be iMproved
 endif
-
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-  call dein#add(s:dein_repo_dir)
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 
   call dein#add('autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
     \ 'build': 'bash install.sh',
     \ })
+  call dein#add('rust-lang/rust.vim')
   call dein#add('vim-jp/vimdoc-ja')
   call dein#add('joeeee44/vvemt')
   " call dein#add('SpaceVim/SpaceVim')
   call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/deoplete.nvim', {
+    \ 'do': ':UpdateRemotePlugins',
+    \ })
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('joshdick/onedark.vim')
@@ -78,6 +72,7 @@ syntax enable
 
 " autozimu/LanguageClient-neovim
 " $ yarn global add vue-language-server
+" $ yarn global add javascript-typescript-langserver
 set hidden
 let g:LanguageClient_serverCommands = {
   \ 'vue': ['vls'],
@@ -86,13 +81,17 @@ let g:LanguageClient_serverCommands = {
   \ 'javascript': ['javascript-typescript-stdio'],
   \ 'typescript': ['javascript-typescript-stdio'],
   \ 'ruby': ['solargraph', 'stdio'],
+  \ 'java': ['jdtls', '-data', getcwd(), '-Dlog.level=ALL'],
   \ }
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<CR>
 " not stop completion $ & /
 setlocal iskeyword+=$
 setlocal iskeyword+=-
+" rust-lang/rust.vim
+let g:rustfmt_autosave = 1
 
 " lilydjwg/colorizer'
 " :ColorHighlight	- start/update highlighting
@@ -234,7 +233,7 @@ nnoremap <C-t> :call fzf#run({'sink': 'edit'})
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'dark'
+" let g:airline_theme = 'dark'
 
 " tpope/vim-fugitive'
 let g:airline#extensions#branch#enabled = 1
@@ -271,7 +270,7 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236 ctermfg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238 ctermfg=238
 
-au   BufEnter *   execute ":lcd " . expand("%:p:h")
+au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 
