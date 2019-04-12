@@ -26,7 +26,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('hail2u/vim-css3-syntax')
   call dein#add('lilydjwg/colorizer')
   call dein#add('jelera/vim-javascript-syntax')
-  call dein#add('w0rp/ale')
+  " call dein#add('w0rp/ale')
   call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/neomru.vim')
@@ -86,7 +86,7 @@ let g:LanguageClient_serverCommands = {
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-" nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<CR>
+nnoremap <silent> gf :call LanguageClient_textDocument_formatting()<CR>
 " not stop completion $ & /
 setlocal iskeyword+=$
 setlocal iskeyword+=-
@@ -147,28 +147,28 @@ highlight NonText ctermbg=NONE guibg=NONE
 highlight SpecialKey ctermbg=NONE guibg=NONE
 " highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
-" w0rp/ale
-let g:ale_linters = {
-  \ 'html': [''],
-  \ 'css': ['stylelint'],
-  \ 'javascript': ['eslint'],
-  \ 'vue': ['vls', 'eslint'],
-  \ 'ruby': ['rubocop'],
-  \ 'eruby': ['erubi'],
-  \ 'erb': ['erb'],
-  \ }
-let b:ale_linter_aliases = {
-  \ 'vue': 'css',
-  \ 'eruby': 'html',
-  \ }
-let g:ale_open_list = 0
-let g:ale_statusline_format = ['E%d', 'W%d', '']
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" let g:ale_sign_error      ='✖'
-" let g:ale_sign_warning    ='⚠'
-" :ALELint
+" " w0rp/ale
+" let g:ale_linters = {
+"   \ 'html': [''],
+"   \ 'css': ['stylelint'],
+"   \ 'javascript': ['eslint'],
+"   \ 'vue': ['vls', 'eslint'],
+"   \ 'ruby': ['rubocop'],
+"   \ 'eruby': ['erubi'],
+"   \ 'erb': ['erb'],
+"   \ }
+" let b:ale_linter_aliases = {
+"   \ 'vue': 'css',
+"   \ 'eruby': 'html',
+"   \ }
+" let g:ale_open_list = 0
+" let g:ale_statusline_format = ['E%d', 'W%d', '']
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" " let g:ale_sign_error      ='✖'
+" " let g:ale_sign_warning    ='⚠'
+" " :ALELint
 
 " Shougo/vimfiler.vim
 nnoremap fi :VimFilerBufferDir<CR>
@@ -233,7 +233,7 @@ nnoremap <C-t> :call fzf#run({'sink': 'edit'})
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-" let g:airline_theme = 'dark'
+let g:airline_theme = 'dark'
 
 " tpope/vim-fugitive'
 let g:airline#extensions#branch#enabled = 1
