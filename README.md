@@ -25,8 +25,5 @@ ln -s ~/dotfiles/init.vim ~/.config/nvim/
 
 ## Licence
 
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
-
 ## Author
 
-[tcnksm](https://github.com/tcnksm)
