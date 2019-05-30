@@ -2,10 +2,8 @@ Dotfiles
 ====
 
 ## Demo
-![lsp floating window](https://github.com/joeeee44/dotfiles/wiki/images/coc.nvim.gif)
-![buffers](https://github.com/joeeee44/dotfiles/wiki/images/coc.nvim.png)
-<!-- ![coc nvim](https://user-images.githubusercontent.com/20234479/58625032-8bcfac00-830c-11e9-9499-cdbf8b6b56bf.gif) -->
-<!-- ![coc nvim](https://user-images.githubusercontent.com/20234479/58625056-99853180-830c-11e9-9427-ac2e13d2ed66.png) -->
+![coc nvim](https://user-images.githubusercontent.com/20234479/58625032-8bcfac00-830c-11e9-9499-cdbf8b6b56bf.gif)
+![coc nvim](https://user-images.githubusercontent.com/20234479/58625056-99853180-830c-11e9-9427-ac2e13d2ed66.png)
 
 ## Description
     .gitconfig  
