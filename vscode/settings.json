@@ -1,0 +1,55 @@
+{
+    "terminal.external.osxExec": "iTerm2.app",
+    "materialTheme.autoApplyIcons": false,
+    "workbench.colorTheme": "Atom One Dark",
+    "workbench.iconTheme": "eq-material-theme-icons-palenight",
+    "window.zoomLevel": 0,
+    "vim.leader": "<space>",
+    "vim.easymotion": true,
+    "vim.visualstar": true,
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors" : {
+        "normal": "#000000",
+        "insert": "#3b55a0",
+        "visual": "#5f00af",
+        "visualline": "#005f87",
+        "visualblock": "#86592d",
+        "replace": "#5f0000"
+    },
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#000000",
+        "statusBar.noFolderBackground": "#000000",
+        "statusBar.debuggingBackground": "#000000"
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j","j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["f","f"],
+            "after": ["<C-w>"]
+        },
+        {
+            "before": ["f", "i"],
+            "after": [],
+            "commands": [
+                { "command": "workbench.action.toggleSidebarVisibility" }
+            ]
+        }
+    ],
+    "diffEditor.ignoreTrimWhitespace": true,
+    "workbench.startupEditor": "none",
+    "editor.minimap.showSlider": "always",
+    "workbench.editor.enablePreview": false,
+    "workbench.tree.horizontalScrolling": true,
+    "workbench.activityBar.visible": true,
+    "files.autoSave": "off",
+    "vim.useSystemClipboard": true,
+    "editor.tabSize": 2,
+    "gitlens.views.repositories.files.layout": "tree",
+    "editor.cursorBlinking": "smooth",
+    "git.autofetch": true
+}

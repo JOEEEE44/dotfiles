@@ -14,13 +14,17 @@ Dotfiles
     .config/nvim/dein_lazy.toml  
     .config/nvim/coc-setting.vim  
     .config/nvim/coc-settings.json  
+    Library/Application\ Support/Code/User/settings.json  
+    Library/Application\ Support/Code/User/keybindings.json  
 
 ## Usage
-    ln -s ~/dotfiles/.gitconfig ~/  
-    ln -s ~/dotfiles/.zshrc ~/  
-    ln -s ~/dotfiles/.tmux.conf ~/  
-    ln -s ~/dotfiles/init.vim ~/.config/nvim/  
-    ln -s ~/dotfiles/dein.toml ~/.config/nvim/  
-    ln -s ~/dotfiles/dein_lazy.toml ~/.config/nvim/  
-    ln -s ~/dotfiles/coc-setting.vim ~/.config/nvim/  
-    ln -s ~/dotfiles/coc-settings.json ~/.config/nvim/  
+    ln -sf ~/dotfiles/.gitconfig ~/  
+    ln -sf ~/dotfiles/.zshrc ~/  
+    ln -sf ~/dotfiles/.tmux.conf ~/  
+    ln -sf ~/dotfiles/vim/init.vim ~/.config/nvim/  
+    ln -sf ~/dotfiles/vim/dein.toml ~/.config/nvim/  
+    ln -sf ~/dotfiles/vim/dein_lazy.toml ~/.config/nvim/  
+    ln -sf ~/dotfiles/vim/coc-setting.vim ~/.config/nvim/  
+    ln -sf ~/dotfiles/vim/coc-settings.json ~/.config/nvim/  
+    ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/  
+    ln -sf ~/dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/  
