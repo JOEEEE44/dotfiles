@@ -28,3 +28,5 @@ Dotfiles
     ln -sf ~/dotfiles/vim/coc-settings.json ~/.config/nvim/  
     ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/  
     ln -sf ~/dotfiles/vscode/keybindings.json ~/Library/Application\ Support/Code/User/  
+
+    # code --list-extensions > extensions.txt
