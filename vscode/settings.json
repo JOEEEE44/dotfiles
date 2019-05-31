@@ -7,6 +7,7 @@
     "vim.leader": "<space>",
     "vim.easymotion": true,
     "vim.visualstar": true,
+    "vim.whichwrap": "h,l,<,>,[,]",
     "vim.statusBarColorControl": true,
     "vim.statusBarColors" : {
         "normal": "#000000",
