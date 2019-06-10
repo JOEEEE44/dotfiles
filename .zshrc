@@ -7,6 +7,9 @@ export EDITOR=vi
 
 # NVIM PATH
 export XDG_CONFIG_HOME=$HOME/.config
+# NVIM nightly PATH
+export PATH="$HOME/.config/nvim/nvim-osx64/bin:$PATH"
+
 # NVIM clangd PATH
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
