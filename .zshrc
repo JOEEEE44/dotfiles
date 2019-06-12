@@ -228,6 +228,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias vz='nvim ~/.zshrc'
 alias c='cdr'
+alias gitlog='git log --graph --decorate --oneline --color --all --pretty="format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]" --date=format:"%y-%m-%d %T"'
 
 # spacemacs CUI
 alias em='emacs -nw'
