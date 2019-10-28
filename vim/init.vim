@@ -10,6 +10,8 @@ if dein#load_state('~/.cache/dein')
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
   call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
 
+  call dein#add('posva/vim-vue')
+
   call dein#end()
   call dein#save_state()
 endif
@@ -36,6 +38,12 @@ nnoremap <C-t> :call fzf#run({'sink': 'edit'})
 au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+
+" posva/vim-vue
+autocmd FileType vue syntax sync fromstart
+autocmd BufNewFile,BufRead *.{html,htm*} set filetype=html
+" autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
+autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
 
 nnoremap ff <C-w>
 inoremap jj <Esc>
