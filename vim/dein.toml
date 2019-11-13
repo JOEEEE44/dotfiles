@@ -70,6 +70,13 @@ repo = 'Shougo/unite.vim'
 repo = 'Shougo/neomru.vim'
 
 [[plugins]]
+repo = 'Shougo/vimfiler.vim'
+hook_add = '''
+  nnoremap fo :VimFilerBufferDir<CR>
+  nnoremap fp :VimFilerExplorer -split -simple -winwidth=35 -toggle -no-quit<CR>
+'''
+
+[[plugins]]
 repo ="kristijanhusak/defx-git"
 hook_add = '''
 call defx#custom#column('git', 'indicators', {
@@ -112,7 +119,7 @@ call defx#custom#option('_', {
       \ 'show_ignored_files': 1,
       \ })
 
-nnoremap <silent>fi :<C-u>Defx -new<CR>
+nnoremap <silent>fi :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
 autocmd FileType defx call s:defx_my_settings()
   function! s:defx_my_settings() abort
     " Define mappings

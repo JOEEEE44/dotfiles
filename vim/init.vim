@@ -40,7 +40,7 @@ au BufEnter * execute 'lcd ' fnameescape(expand('%:p:h'))
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 
 " posva/vim-vue
-autocmd FileType vue syntax sync fromstart
+autocmd FileType vue (syntax) sync fromstart
 autocmd BufNewFile,BufRead *.{html,htm*} set filetype=html
 " autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 autocmd BufNewFile,BufRead *.erb set filetype=eruby.html
@@ -53,6 +53,16 @@ nnoremap <C-k> {
 inoremap {<Enter> {<Enter>}<Esc><S-o>
 inoremap [<Enter> [<Enter>]<Esc><S-o>
 inoremap (<Enter> (<Enter>)<Esc><S-o>
+nnoremap [[ ciw[<C-r><C-r>"]<Esc>
+nnoremap {{ ciw{<C-r><C-r>"}<Esc>
+nnoremap (( ciw(<C-r><C-r>")<Esc>
+nnoremap "" ciw"<C-r><C-r>""<Esc>
+nnoremap '' ciw'<C-r><C-r>"'<Esc>
+nnoremap d[ <S-^>f[xf]x
+nnoremap d{ <S-^>f{xf}x
+nnoremap d( <S-^>f(xf)x
+nnoremap d" <S-^>f"xf"x
+nnoremap d' <S-^>f'xf'x
 nnoremap > <C-w>5>
 nnoremap < <C-w>5<
 nnoremap + <C-w>5+
@@ -148,3 +158,12 @@ augroup END
 " set foldnestmax=2  " 最大折りたたみ深度$
 " set foldcolumn=2  " 左側に折りたたみガイド表示$
 
+" test
+command! -nargs=? UtestAppend call s:UtestAppend(<f-args>)
+function! s:UtestAppend(...)
+  if a:0 >= 1
+    echo 'HERE ' . a:1
+  else
+    echo 'HERE'
+  end
+endfunction
